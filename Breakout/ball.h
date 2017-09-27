@@ -5,7 +5,7 @@
 class Ball
 {
 private:
-    const float ballRadius{ 8.f };
+    const float ballRadius{ 6.f };
     
 
 public:

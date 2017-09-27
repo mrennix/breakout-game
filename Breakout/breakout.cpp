@@ -10,10 +10,11 @@
 using namespace std;
 using namespace sf;
 
-unsigned int windowWidth{ 800 }, windowHeight{ 600 };
+
+unsigned int windowWidth, windowHeight;
 
 constexpr int countBlocksX{ 11 };
-constexpr int countBlocksY{ 4 };
+constexpr int countBlocksY{ 5 };
 
 constexpr float UPDATE_RATE{ (1.0f / 120.0f) * 1000.0f};  // 1/60 secs physics update rate
 constexpr float UPDATE_LIMIT{ 10 };
@@ -70,18 +71,24 @@ void testCollision(Brick& brick, Ball& ball, bool& brickHit)
 
 int main()
 {
-    sf::Color colors[4] = { Color::Red, Color::Cyan, Color::Yellow, Color::Magenta };
+    sf::Color colors[5] = { Color::Red, Color::Cyan, Color::Yellow, Color::Magenta, Color::Blue };
 
     vector<Brick> bricks;
 
     for (int x = 0; x < countBlocksX; ++x)
         for (int y = 0; y < countBlocksY; ++y)
             bricks.emplace_back((x + 1) * (Brick::blockWidth + 3) + 22,
-                                (y + 2) * (Brick::blockHeight + 3),
+                                (y + 3) * (Brick::blockHeight + 3),
                                 colors[y]);
             
-    
-    RenderWindow window{ {windowWidth, windowHeight}, "Breakout - 1" };
+    //vector<VideoMode> videoModes = VideoMode::getFullscreenModes();
+    //VideoMode bestVideoMode = videoModes[0];
+    //windowWidth = bestVideoMode.width;
+    //windowHeight = bestVideoMode.height;
+    windowWidth = 800;
+    windowHeight = 600;
+    RenderWindow window{ {windowWidth, windowHeight}, "Breakout - 1", Style::Titlebar | Style::Close };
+    //RenderWindow window{ { windowWidth, windowHeight }, "Breakout - 1", Style::Fullscreen };
     window.setFramerateLimit(240);
     //window.setVerticalSyncEnabled(true);
 
